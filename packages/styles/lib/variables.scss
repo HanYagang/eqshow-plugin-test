@@ -1,0 +1,90 @@
+$eqx-color-primary: #f5766f;
+$eqx-color-secondary: #027be3;
+$eqx-color-accent: #9c27b0;
+$eqx-color-positive: #21ba45;
+$eqx-color-negative: #c10015;
+$eqx-color-info: #31ccec;
+$eqx-color-warning: #f2c037;
+$eqx-color-dark: #1d1d1d;
+$eqx-color-white: #fff;
+$eqx-color-hover: #1593ff;
+
+// 继承 @extend
+// 垂直居中
+%centerAndVertical {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+%vertical {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+%middle {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@mixin lineW($h, $color, $type: top) {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: $h;
+  left: 0;
+  background: $color;
+  @if $type == "top" {
+    top: 0;
+  } @else {
+    bottom: 0;
+  }
+}
+@mixin lineH($w, $color, $type: left) {
+  content: "";
+  position: absolute;
+  width: $w;
+  height: 100%;
+  left: 0;
+  background: $color;
+  @if $type == "left" {
+    left: 0;
+  } @else {
+    right: 0;
+  }
+}
+
+// 文字超出显示省略号
+@mixin ellipsis {
+  /*加宽度width属来兼容部分浏览*/
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+//文字超出几行显示省略号
+@mixin ellipsis-multi($line) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $line;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// 尺寸
+@mixin size($w, $h) {
+  width: $w;
+  height: $h;
+}
+
+// 三角形
+@mixin triangle($width: 4px, $color: #000) {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  vertical-align: middle;
+  border-top: $width solid $color;
+  border-left: $width solid transparent;
+  border-right: $width solid transparent;
+}
